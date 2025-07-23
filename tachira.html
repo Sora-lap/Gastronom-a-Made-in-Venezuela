@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabores del Táchira | Made In Venezuela</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #7F1100;
+      --secondary: #02332D;
+      --light: #DACFBD;
+      --accent: #BF9861;
+      --dessert: #D4A017;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--secondary) 0%, #022722 100%);
+      color: #333;
+      line-height: 1.6;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 10;
+      text-decoration: none;
+    }
+    
+    .home-button:hover {
+      background: #6a0e00;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .home-button i {
+      font-size: 1.2rem;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      color: var(--light);
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(127, 17, 0, 0.5);
+      padding-top: 20px;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--light);
+      margin: 50px 0 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .desserts-title {
+      color: var(--dessert);
+      border-bottom: 2px solid var(--dessert);
+      text-shadow: 0 0 10px rgba(212, 160, 23, 0.3);
+    }
+    
+    .platos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .plato-card {
+      background: var(--light);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(191, 152, 97, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .dessert-card {
+      border: 1px solid rgba(212, 160, 23, 0.5);
+    }
+    
+    .plato-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(127, 17, 0, 0.3);
+    }
+    
+    .dessert-card:hover {
+      box-shadow: 0 15px 35px rgba(212, 160, 23, 0.3);
+    }
+    
+    .plato-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--primary);
+    }
+    
+    .dessert-img {
+      border-bottom: 3px solid var(--dessert);
+    }
+    
+    .plato-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .plato-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .dessert-title {
+      color: var(--dessert);
+    }
+    
+    .plato-desc {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    
+    .plato-origen {
+      font-style: italic;
+      color: var(--accent);
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .dessert-origen {
+      color: var(--dessert);
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      color: var(--light);
+      font-size: 1.1rem;
+      border-top: 1px solid rgba(191, 152, 97, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .platos-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+        padding-top: 60px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .home-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="home-button">
+      <i class="fas fa-home"></i>
+      Inicio
+    </a>
+    
+    <h1><i class="fas fa-utensils"></i> Gastronomía del Táchira</h1>
+    
+    <h2 class="section-title">Platos Andinos Tradicionales</h2>
+    <div class="platos-grid">
+      <div class="plato-card">
+        <img src="morcon.jpg" alt="Morcón tachirense" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Morcón Tachirense</h2>
+          <p class="plato-desc">Embutido artesanal de carne de cerdo condimentada con especias, envuelto en tela y cocido lentamente. Plato estrella de la cocina tachirense.</p>
+          <p class="plato-origen">Origen: San Cristóbal</p>
+        </div>
+      </div>
+      
+      <div class="plato-card">
+        <img src="chanfaina.avif" alt="Chanfaina" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Chanfaina</h2>
+          <p class="plato-desc">Guiso de vísceras de res o cerdo con papas, especias y hierbas aromáticas. Plato de profundo sabor que muestra la cocina tradicional andina.</p>
+          <p class="plato-origen">Origen: Tradición campesina</p>
+        </div>
+      </div>
+      
+      <div class="plato-card">
+        <img src="mute andino.webp" alt="Mute andino" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Mute Andino</h2>
+          <p class="plato-desc">Sopa espesa de maíz pelado con carne, legumbres y especias. Versión tachirense de este plato andino, más condimentada y sustanciosa.</p>
+          <p class="plato-origen">Origen: Cultura andina</p>
+        </div>
+      </div>
+    </div>
+    
+    <h2 class="section-title desserts-title"><i class="fas fa-ice-cream"></i> Dulces Típicos</h2>
+    <div class="platos-grid">
+      <div class="plato-card dessert-card">
+        <img src="rosquetes.webp" alt="Rosquetes" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Rosquetes</h2>
+          <p class="plato-desc">Galletas en forma de anillo, crujientes por fuera y suaves por dentro, tradicionalmente aromatizadas con anís. Icono de la repostería tachirense.</p>
+          <p class="plato-origen dessert-origen">Origen: Influencia española</p>
+        </div>
+      </div>
+      
+      <div class="plato-card dessert-card">
+        <img src="polvorosas.jpg" alt="Polvorosas" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Polvorosas</h2>
+          <p class="plato-desc">Galletas mantecosas que se deshacen en la boca, hechas con harina, mantequilla y azúcar. Dulce tradicional de las meriendas tachirenses.</p>
+          <p class="plato-origen dessert-origen">Origen: Repostería colonial</p>
+        </div>
+      </div>
+      
+      <div class="plato-card dessert-card">
+        <img src="dulce de durazno.avif" alt="Dulce de durazno" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Dulce de Durazno</h2>
+          <p class="plato-desc">Mitades de durazno conservadas en almíbar espeso, típicas de la zona frutícola del Táchira. Postre que aprovecha la producción local.</p>
+          <p class="plato-origen dessert-origen">Origen: Zonas altas del Táchira</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>© 2025 Made In Venezuela | Gastronomía y Tradición</p>
+    </div>
+  </div>
+</body>
+</html>

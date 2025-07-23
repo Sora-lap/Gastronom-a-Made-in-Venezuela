@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabores de Nueva Esparta | Made In Venezuela</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #7F1100;
+      --secondary: #02332D;
+      --light: #DACFBD;
+      --accent: #BF9861;
+      --dessert: #D4A017;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--secondary) 0%, #022722 100%);
+      color: #333;
+      line-height: 1.6;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 10;
+      text-decoration: none;
+    }
+    
+    .home-button:hover {
+      background: #6a0e00;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .home-button i {
+      font-size: 1.2rem;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      color: var(--light);
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(127, 17, 0, 0.5);
+      padding-top: 20px;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--light);
+      margin: 50px 0 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .desserts-title {
+      color: var(--dessert);
+      border-bottom: 2px solid var(--dessert);
+      text-shadow: 0 0 10px rgba(212, 160, 23, 0.3);
+    }
+    
+    .platos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .plato-card {
+      background: var(--light);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(191, 152, 97, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .dessert-card {
+      border: 1px solid rgba(212, 160, 23, 0.5);
+    }
+    
+    .plato-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(127, 17, 0, 0.3);
+    }
+    
+    .dessert-card:hover {
+      box-shadow: 0 15px 35px rgba(212, 160, 23, 0.3);
+    }
+    
+    .plato-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--primary);
+    }
+    
+    .dessert-img {
+      border-bottom: 3px solid var(--dessert);
+    }
+    
+    .plato-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .plato-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .dessert-title {
+      color: var(--dessert);
+    }
+    
+    .plato-desc {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    
+    .plato-origen {
+      font-style: italic;
+      color: var(--accent);
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .dessert-origen {
+      color: var(--dessert);
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      color: var(--light);
+      font-size: 1.1rem;
+      border-top: 1px solid rgba(191, 152, 97, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .platos-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+        padding-top: 60px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .home-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="home-button">
+      <i class="fas fa-home"></i>
+      Inicio
+    </a>
+    
+    <h1><i class="fas fa-utensils"></i> Gastronomía de Nueva Esparta</h1>
+    
+    <h2 class="section-title">Platos Tradicionales</h2>
+    <div class="platos-grid">
+      <div class="plato-card">
+        <img src="pastel de chucho margariteño.jpg" alt="Pastel de chucho margariteño" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Pastel de Chucho Margariteño</h2>
+          <p class="plato-desc">Delicioso pastel relleno de chucho (tipo de raya), acompañado de especias y vegetales. Plato emblemático que combina los sabores del mar con la tradición insular.</p>
+          <p class="plato-origen">Origen: Isla de Margarita</p>
+        </div>
+      </div>
+      
+      <div class="plato-card">
+        <img src="fosforera.jpg" alt="Fosforera" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Fosforera</h2>
+          <p class="plato-desc">Plato a base de pescado pequeño frito crujiente, llamado así por su tamaño similar a un fósforo. Especialidad margariteña que se sirve con tostones y salsa.</p>
+          <p class="plato-origen">Origen: Pueblos costeros de Margarita</p>
+        </div>
+      </div>
+      
+      <div class="plato-card">
+        <img src="ceviche de pargo y camaron.jpeg" alt="Ceviche de pargo y camarones" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Ceviche de Pargo y Camarones</h2>
+          <p class="plato-desc">Fresco ceviche preparado con pescado pargo, camarones, limón, cebolla y cilantro. Refleja la abundancia marina de las islas con un toque de frescura tropical.</p>
+          <p class="plato-origen">Origen: Costa margariteña</p>
+        </div>
+      </div>
+    </div>
+    
+    <h2 class="section-title desserts-title"><i class="fas fa-ice-cream"></i> Postres Tradicionales</h2>
+    <div class="platos-grid">
+      <div class="plato-card dessert-card">
+        <img src="piñoñate.jpg" alt="Piñoñate margariteño" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Piñoñate Margariteño</h2>
+          <p class="plato-desc">Dulce tradicional hecho con piñones (semillas de la piña), papelón y especias. Postre único que representa la creatividad dulcera de la isla.</p>
+          <p class="plato-origen dessert-origen">Origen: Tradición dulcera margariteña</p>
+        </div>
+      </div>
+      
+      <div class="plato-card dessert-card">
+        <img src="margaritas de dulce de leche.jpg" alt="Margaritas de dulce de leche" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Margaritas de Dulce de Leche</h2>
+          <p class="plato-desc">Galletas crujientes rellenas de dulce de leche, con forma de flor. Icono de la repostería margariteña que combina texturas y sabores tradicionales.</p>
+          <p class="plato-origen dessert-origen">Origen: Repostería tradicional isleña</p>
+        </div>
+      </div>
+      
+      <div class="plato-card dessert-card">
+        <img src="pastaflora.jpg" alt="Pastaflora de dulce de batatas" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Pastaflora de Dulce de Batatas</h2>
+          <p class="plato-desc">Tarta de masa quebrada rellena de dulce de batata, típica de la isla. Postre que muestra la fusión de influencias europeas con productos locales.</p>
+          <p class="plato-origen dessert-origen">Origen: Influencia europea adaptada</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>© 2025 Made In Venezuela | Gastronomía y Tradición</p>
+    </div>
+  </div>
+</body>
+</html>
