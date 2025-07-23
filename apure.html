@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabores de Apure | Made In Venezuela</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #7F1100;
+      --secondary: #02332D;
+      --light: #DACFBD;
+      --accent: #BF9861;
+      --dessert: #D4A017;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--secondary) 0%, #022722 100%);
+      color: #333;
+      line-height: 1.6;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 10;
+      text-decoration: none;
+    }
+    
+    .home-button:hover {
+      background: #6a0e00;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .home-button i {
+      font-size: 1.2rem;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      color: var(--light);
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(127, 17, 0, 0.5);
+      padding-top: 20px;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--light);
+      margin: 50px 0 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .desserts-title {
+      color: var(--dessert);
+      border-bottom: 2px solid var(--dessert);
+      text-shadow: 0 0 10px rgba(212, 160, 23, 0.3);
+    }
+    
+    .platos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .plato-card {
+      background: var(--light);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(191, 152, 97, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .dessert-card {
+      border: 1px solid rgba(212, 160, 23, 0.5);
+    }
+    
+    .plato-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(127, 17, 0, 0.3);
+    }
+    
+    .dessert-card:hover {
+      box-shadow: 0 15px 35px rgba(212, 160, 23, 0.3);
+    }
+    
+    .plato-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--primary);
+    }
+    
+    .dessert-img {
+      border-bottom: 3px solid var(--dessert);
+    }
+    
+    .plato-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .plato-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .dessert-title {
+      color: var(--dessert);
+    }
+    
+    .plato-desc {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    
+    .plato-origen {
+      font-style: italic;
+      color: var(--accent);
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .dessert-origen {
+      color: var(--dessert);
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      color: var(--light);
+      font-size: 1.1rem;
+      border-top: 1px solid rgba(191, 152, 97, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .platos-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+        padding-top: 60px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .home-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="home-button">
+      <i class="fas fa-home"></i>
+      Inicio
+    </a>
+    
+    <h1><i class="fas fa-utensils"></i> Gastronomía de Apure</h1>
+    
+    <h2 class="section-title">Platos Tradicionales</h2>
+    <div class="platos-grid">
+      <div class="plato-card">
+        <img src="picadillo.jpg" alt="Picadillo de Carne Seca" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Picadillo de Carne Seca</h2>
+          <p class="plato-desc">Carne de res deshidratada y desmenuzada, cocinada con cebolla, ajo, ají dulce y especias. Plato emblemático de los llanos apureños que refleja la necesidad de conservación de alimentos.</p>
+          <p class="plato-origen">Origen: Tradición llanera</p>
+        </div>
+      </div>
+      
+      <div class="plato-card">
+        <img src="hallaquitaschicha.jpg" alt="Hallaquita de Chicharrón" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Hallaquita de Chicharrón</h2>
+          <p class="plato-desc">Bolas de masa de maíz mezcladas con chicharrón de cerdo, cocidas en agua. Versión llanera de las hallaquitas, más compactas y sustanciosas, ideales para el trabajo en el campo.</p>
+          <p class="plato-origen">Origen: Zonas rurales de Apure</p>
+        </div>
+      </div>
+      
+      <div class="plato-card">
+        <img src="parrillallanera.jpg" alt="Parrilla Llanera" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Parrilla Llanera</h2>
+          <p class="plato-desc">Variedad de carnes (res, cerdo, pollo) asadas al estilo llanero sobre parrillas de leña, acompañadas de yuca, plátano y guasacaca. Representa la cultura ganadera del estado.</p>
+          <p class="plato-origen">Origen: Hatos y fincas apureñas</p>
+        </div>
+      </div>
+    </div>
+    
+    <h2 class="section-title desserts-title"><i class="fas fa-ice-cream"></i> Postres Tradicionales</h2>
+    <div class="platos-grid">
+      <div class="plato-card dessert-card">
+        <img src="dulcedeciruela.jpg" alt="Dulce de Ciruela" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Dulce de Ciruela</h2>
+          <p class="plato-desc">Ciruelas criollas cocidas en almíbar de papelón con canela y clavos de olor. Postre agridulce que aprovecha los frutos autóctonos de los llanos.</p>
+          <p class="plato-origen dessert-origen">Origen: Árboles frutales de los llanos</p>
+        </div>
+      </div>
+      
+      <div class="plato-card dessert-card">
+        <img src="Dulce-de-Batata.jpg" alt="Dulce de Batata" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Dulce de Batata</h2>
+          <p class="plato-desc">Batata (camote) cocida y mezclada con papelón, canela y clavos de olor, hasta obtener una textura cremosa. Postre energético típico de la región.</p>
+          <p class="plato-origen dessert-origen">Origen: Cultivos locales de batata</p>
+        </div>
+      </div>
+      
+      <div class="plato-card dessert-card">
+        <img src="conservadeyuca.jpg" alt="Conserva de Yuca" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Conserva de Yuca</h2>
+          <p class="plato-desc">Yuca dulce cocida en almíbar espeso, a veces combinada con coco rallado. Demuestra la versatilidad de este tubérculo básico en la cocina llanera.</p>
+          <p class="plato-origen dessert-origen">Origen: Adaptación indígena y criolla</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>© 2025 Made In Venezuela | Gastronomía y Tradición</p>
+    </div>
+  </div>
+</body>
+</html>

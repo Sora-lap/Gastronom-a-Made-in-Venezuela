@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabores de Carabobo | Made In Venezuela</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #7F1100;
+      --secondary: #02332D;
+      --light: #DACFBD;
+      --accent: #BF9861;
+      --dessert: #D4A017;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--secondary) 0%, #022722 100%);
+      color: #333;
+      line-height: 1.6;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 10;
+      text-decoration: none;
+    }
+    
+    .home-button:hover {
+      background: #6a0e00;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .home-button i {
+      font-size: 1.2rem;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      color: var(--light);
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(127, 17, 0, 0.5);
+      padding-top: 20px;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--light);
+      margin: 50px 0 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .desserts-title {
+      color: var(--dessert);
+      border-bottom: 2px solid var(--dessert);
+      text-shadow: 0 0 10px rgba(212, 160, 23, 0.3);
+    }
+    
+    .platos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .plato-card {
+      background: var(--light);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(191, 152, 97, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .dessert-card {
+      border: 1px solid rgba(212, 160, 23, 0.5);
+    }
+    
+    .plato-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(127, 17, 0, 0.3);
+    }
+    
+    .dessert-card:hover {
+      box-shadow: 0 15px 35px rgba(212, 160, 23, 0.3);
+    }
+    
+    .plato-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--primary);
+    }
+    
+    .dessert-img {
+      border-bottom: 3px solid var(--dessert);
+    }
+    
+    .plato-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .plato-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .dessert-title {
+      color: var(--dessert);
+    }
+    
+    .plato-desc {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    
+    .plato-origen {
+      font-style: italic;
+      color: var(--accent);
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .dessert-origen {
+      color: var(--dessert);
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      color: var(--light);
+      font-size: 1.1rem;
+      border-top: 1px solid rgba(191, 152, 97, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .platos-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+        padding-top: 60px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .home-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="home-button">
+      <i class="fas fa-home"></i>
+      Inicio
+    </a>
+    
+    <h1><i class="fas fa-utensils"></i> Gastronomía de Carabobo</h1>
+    
+    <h2 class="section-title">Platos Tradicionales</h2>
+    <div class="platos-grid">
+      <div class="plato-card">
+        <img src="arrozconpollo.jpg" alt="Arroz con Pollo" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Arroz con Pollo</h2>
+          <p class="plato-desc">Versión carabobeña con pollo desmenuzado, verduras, alcaparras y aceitunas, cocinado en caldo de gallina para un sabor intenso. Se distingue por su color amarillo intenso del onoto.</p>
+          <p class="plato-origen">Origen: Tradición familiar valenciana</p>
+        </div>
+      </div>
+      
+      <div class="plato-card">
+        <img src="mondongo de carabobo.jpg" alt="Mondongo" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Mondongo</h2>
+          <p class="plato-desc">Sopa espesa de panza de res con garbanzos, verduras y leche de coco, que le da un toque especial. Plato típico de los domingos en la región.</p>
+          <p class="plato-origen">Origen: Influencia africana y criolla</p>
+        </div>
+      </div>
+      
+      <div class="plato-card">
+        <img src="moroalhorno.webp" alt="Moro al Horno" class="plato-img">
+        <div class="plato-content">
+          <h2 class="plato-title">Moro al Horno</h2>
+          <p class="plato-desc">Arroz con coco y frijoles negros horneado con trozos de carne y tocino, creando una costra dorada característica. Plato festivo de herencia afrocaribeña.</p>
+          <p class="plato-origen">Origen: Costa de Carabobo</p>
+        </div>
+      </div>
+    </div>
+    
+    <h2 class="section-title desserts-title"><i class="fas fa-ice-cream"></i> Postres Tradicionales</h2>
+    <div class="platos-grid">
+      <div class="plato-card dessert-card">
+        <img src="dulce de tamarindo.jpg" alt="Dulce de Tamarindo" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Dulce de Tamarindo</h2>
+          <p class="plato-desc">Pasta espesa de tamarindo con azúcar, de sabor agridulce intenso. Tradicionalmente se sirve en pequeñas porciones por su sabor concentrado.</p>
+          <p class="plato-origen dessert-origen">Origen: Aprovechamiento de frutos tropicales</p>
+        </div>
+      </div>
+      
+      <div class="plato-card dessert-card">
+        <img src="buñuelos en almivar.jpg" alt="Buñuelos en Almíbar" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Buñuelos en Almíbar</h2>
+          <p class="plato-desc">Bolitas de yuca fritas bañadas en almíbar de panela con canela y clavos. Textura crujiente por fuera y esponjosa por dentro.</p>
+          <p class="plato-origen dessert-origen">Origen: Tradición colonial</p>
+        </div>
+      </div>
+      
+      <div class="plato-card dessert-card">
+        <img src="panelitasdesanjoaquin.jpg" alt="Panelitas de San Joaquín" class="plato-img dessert-img">
+        <div class="plato-content">
+          <h2 class="plato-title dessert-title">Panelitas de San Joaquín</h2>
+          <p class="plato-desc">Dulces típicos del municipio San Joaquín, hechos con leche, azúcar y especias, cocidos hasta obtener una textura semiblanda característica.</p>
+          <p class="plato-origen dessert-origen">Origen: San Joaquín, Carabobo</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>© 2025 Made In Venezuela | Gastronomía y Tradición</p>
+    </div>
+  </div>
+</body>
+</html>

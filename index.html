@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Made In Venezuela</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary: #7F1100;
+      --secondary: #02332D;
+      --light: #DACFBD;
+      --accent: #BF9861;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--secondary) 0%, #022722 100%);
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      padding: 30px 0;
+      margin-bottom: 30px;
+      background: rgba(218, 207, 189, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(191, 152, 97, 0.3);
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      color: var(--light);
+      text-shadow: 0 0 10px rgba(127, 17, 0, 0.5);
+      margin-bottom: 15px;
+    }
+    
+    .subtitle {
+      font-size: 1.4rem;
+      color: var(--accent);
+      max-width: 700px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+    
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    
+    .search-box {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 50px;
+      border: 2px solid var(--accent);
+      background: rgba(218, 207, 189, 0.15);
+      color: var(--light);
+      font-size: 1.1rem;
+    }
+    
+    .search-box input::placeholder {
+      color: rgba(218, 207, 189, 0.7);
+    }
+    
+    .search-box i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .state-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .state-card {
+      height: 180px;
+      background: var(--light);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(191, 152, 97, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 15px;
+    }
+    
+    .state-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(127, 17, 0, 0.3);
+    }
+    
+    .state-name {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      color: var(--light);
+      font-size: 1.1rem;
+      border-top: 1px solid rgba(191, 152, 97, 0.3);
+    }
+    
+    .state-count {
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .btn:hover {
+      background: #6a0e00;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(127, 17, 0, 0.4);
+    }
+    
+    .btn i {
+      font-size: 1.2rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 400px;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #02332d, #03a89e);
+      z-index: 2;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #02332d;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .calc-title {
+      text-align: center;
+      margin: 0 0 2rem 0;
+      color: #02332d;
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #02332d;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #02332d;
+      box-shadow: 0 0 0 3px rgba(2, 51, 45, 0.1);
+      background: white;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .calc-btn {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .calc-btn.submit {
+      background: linear-gradient(135deg, #02332d, #03a89e);
+      color: white;
+    }
+
+    .calc-btn.submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(2, 51, 45, 0.3);
+    }
+
+    .calc-btn.reset {
+      background: white;
+      color: #02332d;
+      border: 2px solid #02332d;
+    }
+
+    .calc-btn.reset:hover {
+      background: rgba(2, 51, 45, 0.05);
+    }
+
+    #calc-result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      animation: fadeIn 0.5s ease;
+      border: 1px solid rgba(2, 51, 45, 0.1);
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: rgba(2, 51, 45, 0.1);
+      border-radius: 3px;
+      margin: 2rem 0;
+      overflow: hidden;
+      display: none;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #02332d, #03a89e);
+      transition: width 0.4s ease;
+      border-radius: 3px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(218, 207, 189, 0.2);
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(191, 152, 97, 0.3);
+    }
+
+    .social-btn:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(127, 17, 0, 0.4);
+    }
+
+    .calculator-btn {
+      background: var(--accent);
+      color: var(--secondary);
+    }
+
+    .calculator-btn:hover {
+      background: #a37d4a;
+      color: white;
+    }
+    
+    @media (max-width: 1600px) {
+      .states-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+    
+    @media (max-width: 1200px) {
+      .states-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .states-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .controls {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .states-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .modal-content {
+        padding: 1.5rem;
+        margin: 0 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-utensils"></i> Gastronomia Made <br> In Venezuela</h1>
+      <p class="subtitle"> Un recorrido por cada plato. </p>
+      <div class="state-count">24 estados | Un millon de sabores</div>
+    </header>
+    
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Buscar estado...">
+        <i class="fas fa-search"></i>
+      </div>
+      <button class="btn" id="random-btn"><i class="fas fa-random"></i> Estado Aleatorio</button>
+      <button class="btn calculator-btn" id="calculator-btn">
+        <i class="fas fa-calculator"></i> 
+      </button>
+    </div>
+    
+    <div class="states-grid" id="states-container">
+      <a href="amazonas.html" class="state-link" data-name="Amazonas">
+        <div class="state-card">
+          <img src="amazonas.webp" alt="Bandera Amazonas" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Amazonas</div>
+        </div>
+      </a>
+      <a href="anzoategui.html" class="state-link" data-name="Anzoátegui">
+        <div class="state-card">
+          <img src="anzoategui.webp" alt="Bandera Anzoátegui" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Anzoátegui</div>
+        </div>
+      </a>
+      <a href="apure.html" class="state-link" data-name="Apure">
+        <div class="state-card">
+          <img src="apure.webp" alt="Bandera Apure" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Apure</div>
+        </div>
+      </a>
+      <a href="Aragua.html" class="state-link" data-name="Aragua">
+        <div class="state-card">
+          <img src="aragua.webp" alt="Bandera Aragua" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Aragua</div>
+        </div>
+      </a>
+      <a href="barinas.html" class="state-link" data-name="Barinas">
+        <div class="state-card">
+          <img src="barinas.webp" alt="Bandera Barinas" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Barinas</div>
+        </div>
+      </a>
+      <a href="bolivar.html" class="state-link" data-name="Bolívar">
+        <div class="state-card">
+          <img src="bolivar.webp" alt="Bandera Bolívar" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Bolívar</div>
+        </div>
+      </a>
+      <a href="Carabobo.html" class="state-link" data-name="Carabobo">
+        <div class="state-card">
+          <img src="carabobo.webp" alt="Bandera Carabobo" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Carabobo</div>
+        </div>
+      </a>
+      <a href="cojedes.html" class="state-link" data-name="Cojedes">
+        <div class="state-card">
+          <img src="cojedes.webp" alt="Bandera Cojedes" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Cojedes</div>
+        </div>
+      </a>
+      <a href="delta amacuro.html" class="state-link" data-name="Delta Amacuro">
+        <div class="state-card">
+          <img src="delta amacuro.webp" alt="Bandera Delta Amacuro" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Delta Amacuro</div>
+        </div>
+      </a>
+      <a href="distrito capital.html" class="state-link" data-name="Distrito Capital">
+        <div class="state-card">
+          <img src="caracas.png" alt="Bandera Distrito Capital" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Distrito Capital</div>
+        </div>
+      </a>
+      <a href="falcon.html" class="state-link" data-name="Falcón">
+        <div class="state-card">
+          <img src="falcon.webp" alt="Bandera Falcón" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Falcón</div>
+        </div>
+      </a>
+      <a href="guarico.html" class="state-link" data-name="Guárico">
+        <div class="state-card">
+          <img src="guarico.webp" alt="Bandera Guárico" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Guárico</div>
+        </div>
+      </a>
+      <a href="Lara.html" class="state-link" data-name="Lara">
+        <div class="state-card">
+          <img src="lara.webp" alt="Bandera Lara" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Lara</div>
+        </div>
+      </a>
+      <a href="merida.html" class="state-link" data-name="Mérida">
+        <div class="state-card">
+          <img src="merida.webp" alt="Bandera Mérida" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Mérida</div>
+        </div>
+      </a>
+      <a href="miranda.html" class="state-link" data-name="Miranda">
+        <div class="state-card">
+          <img src="miranda.webp" alt="Bandera Miranda" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Miranda</div>
+        </div>
+      </a>
+      <a href="monagas.html" class="state-link" data-name="Monagas">
+        <div class="state-card">
+          <img src="monagas.webp" alt="Bandera Monagas" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Monagas</div>
+        </div>
+      </a>
+      <a href="nueva esparta.html" class="state-link" data-name="Nueva Esparta">
+        <div class="state-card">
+          <img src="nuevaesparta.webp" alt="Bandera Nueva Esparta" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Nueva Esparta</div>
+        </div>
+      </a>
+      <a href="portuguesa.html" class="state-link" data-name="Portuguesa">
+        <div class="state-card">
+          <img src="portuguesa.webp" alt="Bandera Portuguesa" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Portuguesa</div>
+        </div>
+      </a>
+      <a href="sucre.html" class="state-link" data-name="Sucre">
+        <div class="state-card">
+          <img src="sucre.webp" alt="Bandera Sucre" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Sucre</div>
+        </div>
+      </a>
+      <a href="tachira.html" class="state-link" data-name="Tachira">
+        <div class="state-card">
+          <img src="tachira.webp" alt="Bandera Tachira" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Táchira</div>
+        </div>
+      </a>
+      <a href="trujillo.html" class="state-link" data-name="Trujillo">
+        <div class="state-card">
+          <img src="trujillo.webp" alt="Bandera Trujillo" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Trujillo</div>
+        </div>
+      </a>
+      <a href="vargas.html" class="state-link" data-name="Vargas">
+        <div class="state-card">
+          <img src="vargas la guaira.webp" alt="Bandera Vargas" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Vargas</div>
+        </div>
+      </a>
+      <a href="yaracuy.html" class="state-link" data-name="Yaracuy">
+        <div class="state-card">
+          <img src="yaracuy.webp" alt="Bandera Yaracuy" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Yaracuy</div>
+        </div>
+      </a>
+      <a href="zulia.html" class="state-link" data-name="Zulia">
+        <div class="state-card">
+          <img src="zulia.webp" alt="Bandera Zulia" style="height: 80px; object-fit: contain;">
+          <div class="state-name">Zulia</div>
+        </div>
+      </a>
+    </div>
+    
+    <div class="footer">
+      <div class="social-buttons">
+        <a href="https://www.instagram.com/madein_venzl?igsh=MXI5amVneXhvYTkyMg==" class="social-btn"><i class="fab fa-instagram"></i></a>
+      </div>
+      
+      <p>© 2025 Gastronomía Made In Venezuela | Diseñado por <br>Yudimar Atencio <br> Oriana Villegas <br> Sheiner Crespo <br> Elisneth Gollarza</p>
+    </div>
+  </div>
+
+  <div class="modal" id="calculator-modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h2 class="calc-title">Calcula Tu IMC</h2>
+      <form id="calculadora">
+        <div class="form-group">
+          <label for="peso">Peso (kg)</label>
+          <input type="number" id="peso" step="0.1" required placeholder="70.5">
+        </div>
+        
+        <div class="form-group">
+          <label for="altura">Altura (m)</label>
+          <input type="number" id="altura" step="0.01" required placeholder="1.75">
+        </div>
+        
+        <div class="progress-container" id="progress-container">
+          <div id="progress-bar"></div>
+        </div>
+        
+        <div class="btn-group">
+          <button type="submit" class="calc-btn submit">Calcular</button>
+          <button type="button" class="calc-btn reset" id="reset-btn">Reiniciar</button>
+        </div>
+        
+        <div id="calc-result"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('search-input');
+      const randomBtn = document.getElementById('random-btn');
+      const calculatorBtn = document.getElementById('calculator-btn');
+      const stateLinks = Array.from(document.querySelectorAll('.state-link'));
+      const modal = document.getElementById('calculator-modal');
+      const closeModal = document.querySelector('.close-modal');
+
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        stateLinks.forEach(link => {
+          const stateName = link.getAttribute('data-name').toLowerCase();
+          
+          if (stateName.includes(searchTerm)) {
+            link.style.display = 'block';
+          } else {
+            link.style.display = 'none';
+          }
+        });
+      });
+      
+      randomBtn.addEventListener('click', function() {
+        stateLinks.forEach(link => {
+          link.style.display = 'block';
+        });
+
+        const visibleLinks = stateLinks.filter(link => 
+          window.getComputedStyle(link).display !== 'none'
+        );
+        
+        if (visibleLinks.length > 0) {
+          visibleLinks.forEach(link => {
+            link.style.display = 'none';
+          });
+          
+          const randomIndex = Math.floor(Math.random() * visibleLinks.length);
+          visibleLinks[randomIndex].style.display = 'block';
+          
+          visibleLinks[randomIndex].scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }
+      });
+      
+      calculatorBtn.addEventListener('click', function() {
+        modal.style.display = 'flex';
+      });
+      
+      closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+      
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+      
+      document.getElementById('calculadora').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar');
+        progressContainer.style.display = 'block';
+        
+        document.getElementById('calc-result').innerHTML = '';
+        
+        let width = 0;
+        const interval = setInterval(() => {
+          if (width >= 100) {
+            clearInterval(interval);
+            document.getElementById('calc-result').innerHTML = "Hola Profe";
+          } else {
+            width += 2;
+            progressBar.style.width = width + '%';
+          }
+        }, 30);
+      });
+      document.getElementById('reset-btn').addEventListener('click', function() {
+        document.getElementById('peso').value = '';
+        document.getElementById('altura').value = '';
+        document.getElementById('calc-result').innerHTML = '';
+        document.getElementById('progress-container').style.display = 'none';
+        document.getElementById('progress-bar').style.width = '0%';
+      });
+    });
+  </script>
+</body>
+</html>
